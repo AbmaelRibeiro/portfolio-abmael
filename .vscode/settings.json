@@ -1,0 +1,17 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescriptreact": "html",
+    "javascriptreact": "html"
+  },
+  "tailwindCSS.experimental.classRegex": ["className=\"([^\"]*)\"", "className={`([^`]*)`"],
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.4,
+  "editor.renderWhitespace": "selection",
+  "editor.suggestSelection": "first"
+}

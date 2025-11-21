@@ -1,0 +1,27 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="64" cy="64" r="64" fill="#0A1128"/>
+  
+  <!-- Letter A - Stylized -->
+  <path d="M 40 90 L 50 60 L 64 30 L 78 60 L 88 90" 
+        stroke="#1261A0" 
+        stroke-width="8" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        fill="none"/>
+  
+  <!-- Horizontal Bar -->
+  <line x1="52" y1="70" x2="76" y2="70" 
+        stroke="#1261A0" 
+        stroke-width="6" 
+        stroke-linecap="round"/>
+  
+  <!-- Accent Dot -->
+  <circle cx="64" cy="25" r="4" fill="#1261A0"/>
+  
+  <!-- Tech Lines -->
+  <line x1="30" y1="50" x2="35" y2="50" stroke="#1261A0" stroke-width="2" opacity="0.6"/>
+  <line x1="93" y1="50" x2="98" y2="50" stroke="#1261A0" stroke-width="2" opacity="0.6"/>
+  <line x1="35" y1="75" x2="40" y2="75" stroke="#1261A0" stroke-width="2" opacity="0.6"/>
+  <line x1="88" y1="75" x2="93" y2="75" stroke="#1261A0" stroke-width="2" opacity="0.6"/>
+</svg>

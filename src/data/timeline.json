@@ -1,0 +1,62 @@
+{
+  "timeline": [
+    {
+      "id": 1,
+      "year": "2019",
+      "title": "Administração",
+      "institution": "UNINOVE",
+      "icon": "GraduationCap",
+      "type": "education",
+      "description": "Formação em Administração de Empresas com foco em gestão estratégica e empreendedorismo.",
+      "skills": ["Gestão", "Estratégia", "Análise de Negócios"]
+    },
+    {
+      "id": 2,
+      "year": "2023",
+      "title": "Análise e Desenvolvimento de Sistemas",
+      "institution": "FIAP",
+      "icon": "Code2",
+      "type": "education",
+      "description": "Especialização em desenvolvimento de software com foco em tecnologias modernas e metodologias ágeis.",
+      "skills": ["Programação", "Arquitetura", "DevOps", "Mobile"]
+    },
+    {
+      "id": 3,
+      "year": "2024",
+      "title": "IA Recepcionista Atma",
+      "institution": "Projeto Destaque",
+      "icon": "Sparkles",
+      "type": "project",
+      "description": "Sistema inteligente de atendimento automatizado que revolucionou o atendimento ao cliente da empresa.",
+      "skills": ["Python", "Django", "IA", "NLP", "WhatsApp API"]
+    },
+    {
+      "id": 4,
+      "year": "2024",
+      "title": "MoneyCare Fintech",
+      "institution": "Aplicativo Mobile",
+      "icon": "Award",
+      "type": "project",
+      "description": "Solução completa de gestão financeira desenvolvida em Kotlin com Jetpack Compose.",
+      "skills": ["Kotlin", "Android", "Jetpack Compose", "Firebase"]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Oracle Certified Associate, Java SE",
+      "institution": "Oracle",
+      "year": "2023"
+    },
+    {
+      "name": "Android Developer Associate",
+      "institution": "Google",
+      "year": "2024"
+    }
+  ],
+  "experience": {
+    "years": 5,
+    "projects": 20,
+    "technologies": 15,
+    "clients": 10
+  }
+}

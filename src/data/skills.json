@@ -1,0 +1,86 @@
+{
+  "categories": [
+    {
+      "id": "backend",
+      "title": "Back-end",
+      "icon": "Code2",
+      "color": "from-blue-500 to-cyan-500",
+      "skills": [
+        { "name": "Java", "level": 90, "years": 4 },
+        { "name": "Python", "level": 85, "years": 3 },
+        { "name": "C#/.NET", "level": 75, "years": 2 },
+        { "name": "Node.js", "level": 80, "years": 3 }
+      ]
+    },
+    {
+      "id": "mobile",
+      "title": "Mobile",
+      "icon": "Zap",
+      "color": "from-green-500 to-emerald-500",
+      "skills": [
+        { "name": "Kotlin", "level": 90, "years": 4 },
+        { "name": "Jetpack Compose", "level": 85, "years": 2 },
+        { "name": "Android SDK", "level": 88, "years": 4 },
+        { "name": "Flutter", "level": 70, "years": 1 }
+      ]
+    },
+    {
+      "id": "frontend",
+      "title": "Front-end",
+      "icon": "Palette",
+      "color": "from-purple-500 to-pink-500",
+      "skills": [
+        { "name": "React", "level": 85, "years": 3 },
+        { "name": "JavaScript/TypeScript", "level": 88, "years": 4 },
+        { "name": "Tailwind CSS", "level": 90, "years": 2 },
+        { "name": "HTML/CSS", "level": 92, "years": 5 }
+      ]
+    },
+    {
+      "id": "database",
+      "title": "Banco de Dados",
+      "icon": "Database",
+      "color": "from-orange-500 to-red-500",
+      "skills": [
+        { "name": "Oracle", "level": 85, "years": 3 },
+        { "name": "PostgreSQL", "level": 88, "years": 3 },
+        { "name": "MySQL", "level": 82, "years": 4 },
+        { "name": "MongoDB", "level": 75, "years": 2 }
+      ]
+    },
+    {
+      "id": "devops",
+      "title": "DevOps & Infra",
+      "icon": "Cloud",
+      "color": "from-indigo-500 to-blue-500",
+      "skills": [
+        { "name": "Git/GitHub", "level": 90, "years": 5 },
+        { "name": "Docker", "level": 75, "years": 2 },
+        { "name": "CI/CD", "level": 70, "years": 2 },
+        { "name": "Cloud (AWS/Azure)", "level": 65, "years": 1 }
+      ]
+    },
+    {
+      "id": "outros",
+      "title": "Outros",
+      "icon": "GitBranch",
+      "color": "from-yellow-500 to-amber-500",
+      "skills": [
+        { "name": "REST APIs", "level": 92, "years": 4 },
+        { "name": "Django", "level": 85, "years": 3 },
+        { "name": "IA/ML Básico", "level": 70, "years": 1 },
+        { "name": "Metodologias Ágeis", "level": 85, "years": 4 }
+      ]
+    }
+  ],
+  "tools": [
+    { "name": "VS Code", "icon": "💻", "category": "editor" },
+    { "name": "IntelliJ IDEA", "icon": "🧠", "category": "editor" },
+    { "name": "Android Studio", "icon": "📱", "category": "editor" },
+    { "name": "Git", "icon": "🔀", "category": "version-control" },
+    { "name": "Figma", "icon": "🎨", "category": "design" },
+    { "name": "Postman", "icon": "📮", "category": "api" },
+    { "name": "Docker", "icon": "🐳", "category": "devops" },
+    { "name": "Jira", "icon": "📊", "category": "project-management" }
+  ]
+}

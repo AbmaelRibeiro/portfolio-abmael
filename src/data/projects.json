@@ -1,0 +1,129 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "IA Recepcionista Atma Soma",
+      "slug": "ia-recepcionista-atma",
+      "category": "ia",
+      "status": "production",
+      "description": "Sistema inteligente de atendimento automatizado com processamento de linguagem natural e integração WhatsApp para atendimento 24/7.",
+      "longDescription": "Solução completa de IA para atendimento automatizado, capaz de compreender contexto, responder perguntas e encaminhar casos complexos para atendentes humanos.",
+      "image": "https://images.unsplash.com/photo-1697577418970-95d99b5a55cf",
+      "technologies": ["Python", "Django", "IA", "WhatsApp API", "NLP", "PostgreSQL"],
+      "features": [
+        "Processamento de Linguagem Natural",
+        "Integração WhatsApp Business",
+        "Aprendizado contínuo",
+        "Dashboard de métricas"
+      ],
+      "github": null,
+      "demo": null,
+      "year": 2024
+    },
+    {
+      "id": 2,
+      "title": "MoneyCare Fintech",
+      "slug": "moneycare-fintech",
+      "category": "mobile",
+      "status": "production",
+      "description": "Aplicativo mobile completo de gestão financeira com dashboard interativo, controle de gastos e análises inteligentes.",
+      "longDescription": "Aplicativo Android nativo desenvolvido em Kotlin com Jetpack Compose, oferecendo controle total das finanças pessoais com gráficos, relatórios e recomendações inteligentes.",
+      "image": "https://images.unsplash.com/photo-1748439435495-722cc1728b7e",
+      "technologies": ["Kotlin", "Jetpack Compose", "Firebase", "Material Design", "Room DB"],
+      "features": [
+        "Controle de receitas e despesas",
+        "Gráficos interativos",
+        "Categorização automática",
+        "Metas financeiras",
+        "Exportação de relatórios"
+      ],
+      "github": "https://github.com/AbmaelRibeiro/moneycare",
+      "demo": null,
+      "year": 2024
+    },
+    {
+      "id": 3,
+      "title": "Sistema de Questionário Atma",
+      "slug": "questionario-atma",
+      "category": "web",
+      "status": "production",
+      "description": "Plataforma web para criação, distribuição e análise de questionários com visualização de dados em tempo real.",
+      "longDescription": "Sistema web corporativo desenvolvido em Java com JSP e Servlets, permitindo criação de formulários dinâmicos e análise estatística dos resultados.",
+      "image": "https://images.unsplash.com/photo-1557324232-b8917d3c3dcb",
+      "technologies": ["Java", "JSP", "Servlets", "Oracle", "Bootstrap", "Chart.js"],
+      "features": [
+        "Editor de questionários dinâmico",
+        "Múltiplos tipos de perguntas",
+        "Análise estatística avançada",
+        "Exportação em PDF e Excel",
+        "Gerenciamento de usuários"
+      ],
+      "github": null,
+      "demo": null,
+      "year": 2023
+    },
+    {
+      "id": 4,
+      "title": "Taboão Flix",
+      "slug": "taboao-flix",
+      "category": "web",
+      "status": "development",
+      "description": "Plataforma web de streaming IPTV com interface moderna inspirada em serviços de streaming populares.",
+      "longDescription": "Aplicativo web full stack desenvolvido com React e Node.js, oferecendo uma experiência de streaming completa com sistema de usuários e conteúdo on-demand.",
+      "image": "https://images.unsplash.com/photo-1633250391894-397930e3f5f2",
+      "technologies": ["React", "Node.js", "Express", "MongoDB", "WebRTC", "Redis"],
+      "features": [
+        "Interface tipo Netflix",
+        "Sistema de usuários",
+        "Gerenciamento de conteúdo",
+        "Streaming adaptativo",
+        "Lista de favoritos"
+      ],
+      "github": null,
+      "demo": null,
+      "year": 2024
+    },
+    {
+      "id": 5,
+      "title": "Adega Tô em Casa",
+      "slug": "adega-to-em-casa",
+      "category": "mobile",
+      "status": "production",
+      "description": "E-commerce mobile para delivery de vinhos e bebidas com sistema de recomendação personalizado baseado em preferências.",
+      "longDescription": "Aplicativo Android nativo para delivery de bebidas, com catálogo completo, sistema de pedidos, rastreamento e recomendações inteligentes.",
+      "image": "https://images.unsplash.com/photo-1633250391894-397930e3f5f2",
+      "technologies": ["Kotlin", "Android SDK", "REST API", "SQLite", "Google Maps"],
+      "features": [
+        "Catálogo de produtos",
+        "Carrinho de compras",
+        "Rastreamento de pedidos",
+        "Sistema de recomendação",
+        "Integração com pagamento"
+      ],
+      "github": null,
+      "demo": null,
+      "year": 2023
+    },
+    {
+      "id": 6,
+      "title": "Apps Android Nativos",
+      "slug": "apps-android",
+      "category": "mobile",
+      "status": "concept",
+      "description": "Coleção de aplicativos Android desenvolvidos com Kotlin e Jetpack Compose, focados em performance, UX e boas práticas.",
+      "longDescription": "Portfolio de aplicativos Android nativos demonstrando expertise em desenvolvimento mobile, arquitetura MVVM, injeção de dependências e UI moderna.",
+      "image": "https://images.unsplash.com/photo-1633250391894-397930e3f5f2",
+      "technologies": ["Kotlin", "Jetpack Compose", "MVVM", "Coroutines", "Hilt", "Retrofit"],
+      "features": [
+        "Arquitetura MVVM",
+        "UI declarativa com Compose",
+        "Programação reativa",
+        "Testes unitários e de UI",
+        "Material Design 3"
+      ],
+      "github": "https://github.com/AbmaelRibeiro",
+      "demo": null,
+      "year": 2024
+    }
+  ]
+}
