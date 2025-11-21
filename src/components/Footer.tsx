@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import { Heart, ArrowUp } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowUp, Heart } from 'lucide-react';
 
 export function Footer() {
   const scrollToTop = () => {

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
 
 interface HeaderProps {
   scrolled: boolean;

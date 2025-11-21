@@ -1,5 +1,5 @@
+import { motion } from 'framer-motion';
 import { ChevronDown, Download, Sparkles } from 'lucide-react';
-import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
 export function Hero() {

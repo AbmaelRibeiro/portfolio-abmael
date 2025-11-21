@@ -1,5 +1,5 @@
+import { motion } from 'framer-motion';
 import { CheckCircle2, Github, Linkedin, Mail, MapPin, MessageSquare, Send } from 'lucide-react';
-import { motion } from 'motion/react';
 import { useState } from 'react';
 
 export function Contact() {

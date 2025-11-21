@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import { Code2, Database, Palette, Cloud, GitBranch, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Cloud, Code2, Database, GitBranch, Palette, Zap } from 'lucide-react';
 
 export function Skills() {
   const skillCategories = [

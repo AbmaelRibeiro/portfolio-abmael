@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   Brain,
   Check,
@@ -12,7 +13,6 @@ import {
   Wrench,
   X,
 } from 'lucide-react';
-import { AnimatePresence, motion } from 'motion/react';
 import React, { useState } from 'react';
 
 // Types moved to module scope so components can be declared outside render
@@ -25,9 +25,9 @@ interface Project {
   description: string;
   image: string;
   technologies: string[];
-  icon: React.ComponentType<{ size?: number; className?: string }>;
+  icon: React.ComponentType<{ size?: number | string; className?: string }>;
   color: string;
-  status?: ProjectStatus;
+  status: ProjectStatus;
   detailedDescription?: string;
   repoUrl?: string;
   zipUrl?: string;
@@ -339,10 +339,10 @@ export function Projects() {
               onClick={() => setSelectedCategory(category.id)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2.5 rounded-lg transition-all ${
+              className={`px-6 py-2.5 rounded-lg transition-all text-white ${
                 selectedCategory === category.id
-                  ? 'bg-gradient-to-r from-[#1261A0] to-[#1261A0]/80 text-white shadow-lg shadow-[#1261A0]/50'
-                  : 'bg-white/5 text-[#E2E8F0] border border-[#1261A0]/30 hover:border-[#1261A0]/60'
+                  ? 'bg-gradient-to-r from-[#1261A0] to-[#1261A0]/80 shadow-lg shadow-[#1261A0]/50'
+                  : 'bg-white/5 border border-[#1261A0]/30 hover:border-[#1261A0]/60'
               }`}
             >
               {category.label}

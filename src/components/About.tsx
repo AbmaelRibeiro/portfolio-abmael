@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import { GraduationCap, Code2, Sparkles, Award } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Award, Code2, GraduationCap, Sparkles } from 'lucide-react';
 
 export function About() {
   const timeline = [
