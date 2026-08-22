@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#18234f" />
+<title>PMG Comercial IA — Importar Catálogo</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#161b2d;--muted:#667085;--line:#e5e9f0;--navy:#18234f;--soft:#eef2ff;--green:#087a4b;--red:#b91c1c;--shadow:0 14px 38px rgba(20,31,69,.10)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}.wrap{max-width:720px;margin:0 auto;padding:24px 18px 60px}.brand{display:flex;align-items:center;gap:11px;font-weight:900;margin-bottom:24px}.logo{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--navy);color:white;font-size:12px}.brand small{display:block;color:var(--muted);font-weight:600}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow);margin-bottom:14px}h1{font-size:30px;line-height:1.08;letter-spacing:-.04em;margin:0 0 9px}h2{font-size:19px;margin:0 0 8px}p{color:var(--muted);line-height:1.5;margin:0 0 14px}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:13px;font-weight:800}.field input{width:100%;border:1px solid var(--line);border-radius:14px;padding:13px 14px;background:white}.btn{border:0;border-radius:14px;padding:13px 16px;font-weight:900;cursor:pointer}.primary{width:100%;background:var(--navy);color:white}.soft{background:var(--soft);color:var(--navy)}.hidden{display:none!important}.msg{margin-top:12px;padding:12px 13px;border-radius:13px;background:#f4f6f9;color:var(--muted);font-size:13px;line-height:1.45}.msg.error{background:#fff0f1;color:var(--red)}.msg.ok{background:#eaf9f1;color:var(--green)}.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.mini{background:#f7f8fb;border-radius:14px;padding:13px}.mini small{display:block;color:var(--muted);font-size:11px}.mini strong{display:block;font-size:18px;margin-top:3px}.progress{height:14px;border-radius:999px;background:#e8ebf2;overflow:hidden;margin:14px 0 7px}.bar{height:100%;width:0;background:var(--navy);transition:width .2s}.status{font-size:12px;color:var(--muted)}a.link{display:inline-block;color:var(--navy);font-weight:900;text-decoration:none;margin-top:10px}.warn{background:#fff7e8;color:#7a4b00;border-radius:14px;padding:13px;font-size:13px;line-height:1.45}@media(max-width:560px){.meta{grid-template-columns:1fr 1fr}h1{font-size:27px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand"><div class="logo">PMG</div><div>PMG Comercial IA<small>Importador administrativo</small></div></div>
+
+  <section class="card">
+    <h1>Importar catálogo completo</h1>
+    <p>Esta ferramenta carrega os produtos e preços das Tabelas 0 e 1 em lotes, preservando as versões anteriores.</p>
+    <div class="warn">Use somente o arquivo estruturado gerado a partir dos PDFs oficiais. O sistema valida formato, quantidade, códigos e versões antes de gravar.</div>
+  </section>
+
+  <section id="loginBox" class="card hidden">
+    <h2>Entrar como administrador</h2>
+    <div class="field"><label>E-mail</label><input id="email" value="abmaelribeiro@outlook.com" type="email"></div>
+    <div class="field"><label>Senha</label><input id="password" type="password" placeholder="Sua senha"></div>
+    <button id="loginBtn" class="btn primary">Entrar</button>
+    <div id="loginMsg" class="msg hidden"></div>
+  </section>
+
+  <section id="importBox" class="card hidden">
+    <h2>1. Selecione o arquivo</h2>
+    <div class="field"><input id="file" type="file" accept="application/json,.json"></div>
+    <div id="fileInfo" class="msg">Nenhum arquivo selecionado.</div>
+    <div class="meta">
+      <div class="mini"><small>Produtos</small><strong id="count">—</strong></div>
+      <div class="mini"><small>Formato</small><strong id="format">—</strong></div>
+    </div>
+  </section>
+
+  <section id="runBox" class="card hidden">
+    <h2>2. Validar e importar</h2>
+    <p>O processo é dividido em lotes. Se um lote falhar, a importação para e mostra o erro.</p>
+    <button id="importBtn" class="btn primary" disabled>Importar 2.205 produtos</button>
+    <div class="progress"><div id="bar" class="bar"></div></div>
+    <div id="status" class="status">Aguardando arquivo.</div>
+    <div id="result" class="msg hidden"></div>
+  </section>
+
+  <section class="card">
+    <a class="link" href="./index.html">← Voltar para PMG Comercial IA</a>
+  </section>
+</main>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.57.0'
+const supabase=createClient('https://mvlnnerolwabvdgbpntz.supabase.co','sb_publishable_oS7vr5cb4w5TQJaiZ0jJ9w_IX9Q21SY')
+const $=id=>document.getElementById(id)
+let payload=null
+let profile=null
+const VERSION0_LABEL='Carga completa GERAL_0 - 22/08/2026'
+const VERSION1_LABEL='Carga completa GERAL_1 - 22/08/2026'
+function show(el,text,type=''){el.textContent=text;el.className='msg '+type}
+function hide(el){el.className='msg hidden'}
+async function boot(){
+  const {data:{session}}=await supabase.auth.getSession()
+  if(!session){$('loginBox').classList.remove('hidden');return}
+  const {data,error}=await supabase.from('profiles').select('role,active,full_name').eq('id',session.user.id).single()
+  if(error||!data?.active||data.role!=='admin'){$('loginBox').classList.remove('hidden');show($('loginMsg'),'É necessário entrar com um administrador ativo.','error');return}
+  profile=data
+  $('loginBox').classList.add('hidden');$('importBox').classList.remove('hidden');$('runBox').classList.remove('hidden')
+}
+$('loginBtn').onclick=async()=>{
+  hide($('loginMsg'))
+  const {error}=await supabase.auth.signInWithPassword({email:$('email').value.trim().toLowerCase(),password:$('password').value})
+  if(error){show($('loginMsg'),'Não foi possível entrar. Confira e-mail e senha.','error');return}
+  await boot()
+}
+$('file').onchange=async e=>{
+  payload=null;$('importBtn').disabled=true;$('bar').style.width='0%';$('status').textContent='Lendo arquivo...';hide($('result'))
+  const file=e.target.files?.[0]
+  if(!file){show($('fileInfo'),'Nenhum arquivo selecionado.');return}
+  try{
+    const parsed=JSON.parse(await file.text())
+    if(parsed.format!=='pmg_catalog_import_v1') throw new Error('Formato inválido')
+    if(!Array.isArray(parsed.rows)||parsed.rows.length!==2205) throw new Error('O arquivo precisa conter exatamente 2.205 produtos')
+    const codes=new Set(parsed.rows.map(x=>String(x.code)))
+    if(codes.size!==2205) throw new Error('Existem códigos duplicados')
+    for(const r of parsed.rows){if(!r.code||!r.name||r.price0==null||r.price1==null) throw new Error('Existem linhas incompletas')}
+    payload=parsed
+    show($('fileInfo'),`${file.name} validado. Fontes: ${parsed.source0} + ${parsed.source1}.`,'ok')
+    $('count').textContent=parsed.rows.length.toLocaleString('pt-BR');$('format').textContent='PMG v1';$('importBtn').disabled=false;$('status').textContent='Pronto para importar.'
+  }catch(err){show($('fileInfo'),err.message||'Arquivo inválido.','error');$('count').textContent='—';$('format').textContent='—';$('status').textContent='Corrija o arquivo antes de continuar.'}
+}
+async function getVersions(){
+  const {data,error}=await supabase.from('price_table_versions').select('id,version_label,price_table_id').in('version_label',[VERSION0_LABEL,VERSION1_LABEL])
+  if(error) throw error
+  const v0=data?.find(x=>x.version_label===VERSION0_LABEL),v1=data?.find(x=>x.version_label===VERSION1_LABEL)
+  if(!v0||!v1) throw new Error('As versões completas das Tabelas 0 e 1 não foram encontradas.')
+  return {v0:v0.id,v1:v1.id}
+}
+$('importBtn').onclick=async()=>{
+  if(!payload)return
+  $('importBtn').disabled=true;hide($('result'))
+  try{
+    const versions=await getVersions();const size=250;let done=0
+    for(let i=0;i<payload.rows.length;i+=size){
+      const chunk=payload.rows.slice(i,i+size)
+      $('status').textContent=`Importando ${i+1}–${Math.min(i+size,payload.rows.length)} de ${payload.rows.length}...`
+      const {data,error}=await supabase.rpc('admin_import_catalog_batch',{p_rows:chunk,p_version0:versions.v0,p_version1:versions.v1})
+      if(error) throw new Error(error.message)
+      done+=Number(data?.imported||chunk.length)
+      $('bar').style.width=`${Math.round(done/payload.rows.length*100)}%`
+    }
+    $('status').textContent='Importação concluída.'
+    show($('result'),`Sucesso: ${done.toLocaleString('pt-BR')} produtos importados com preços nas Tabelas 0 e 1.`,'ok')
+  }catch(err){show($('result'),'Importação interrompida: '+(err.message||'erro desconhecido'),'error');$('status').textContent='A importação foi interrompida.'}
+  $('importBtn').disabled=false
+}
+await boot()
+</script>
+</body>
+</html>
