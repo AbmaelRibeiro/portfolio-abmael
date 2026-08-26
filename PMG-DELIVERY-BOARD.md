@@ -4,6 +4,24 @@ Status baseline: `0.9.0-beta / homologation`
 
 This board converts `PMG-ROADMAP.md` into the active production sequence.
 
+## CONSOLIDATION IN PROGRESS — current 0.9.0-beta
+
+### EPIC F — Manager action layer
+
+Pulled forward as consolidation work without creating a new UI version.
+
+Current status:
+
+- seller diagnosis: **implemented in canonical route `diagnostico-vendedor.html`**;
+- stalled clients/pipeline: **implemented in diagnosis/report views**;
+- target vs pace: **implemented in diagnosis view**;
+- daily/weekly management report: **implemented in canonical route `relatorio-gerencial.html`**;
+- manager-created seller priority: **UI implemented; database/RLS permission still requires explicit validation before it is considered done**;
+- channel/campaign aggregates: pending later messaging phases;
+- management must never read private seller message bodies/attachments.
+
+This consolidation does not replace the 0.9.1 commercial-core work below.
+
 ## NOW — 0.9.1
 
 ### EPIC A — Easy order editing
@@ -77,19 +95,6 @@ Definition of done:
 - delivery/failure/reply metrics;
 - revenue attribution;
 - no enforcement-evasion behavior.
-
-## LATER — 0.13.0
-
-### EPIC F — Manager action layer
-
-Definition of done:
-
-- seller diagnosis;
-- stalled clients/pipeline;
-- manager-created priority;
-- target vs pace;
-- daily/weekly digest;
-- channel/campaign aggregates without private message content.
 
 ## Production policy
 
