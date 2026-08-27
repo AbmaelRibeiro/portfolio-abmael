@@ -15,10 +15,55 @@ Current status:
 - seller diagnosis: **implemented in canonical route `diagnostico-vendedor.html`**;
 - stalled clients/pipeline: **implemented in diagnosis/report views**;
 - target vs pace: **implemented in diagnosis view**;
-- daily/weekly management report: **implemented in canonical route `relatorio-gerencial.html`**;
+- daily/weekly management report: **implemented in canonical route `relatorio-gerencial.html`** and must be linked as an integrated management module;
 - manager-created seller priority: **UI implemented; database/RLS permission still requires explicit validation before it is considered done**;
+- access management: frontend now has a safe seller-list fallback when the detailed `access_grants` RPC fails; backend permission still needs correction;
 - channel/campaign aggregates: pending later messaging phases;
 - management must never read private seller message bodies/attachments.
+
+### EPIC G — Seller administration + customer ownership
+
+This is a commercial-core consolidation gate and must be resolved before large-scale journey/campaign automation.
+
+#### Seller administration
+
+- complete seller commercial registration before login invitation;
+- official seller code/ID;
+- full name/display name;
+- CPF normalized when supplied by PMG;
+- business/contact e-mail and phone;
+- active/inactive status;
+- login identity remains separate from commercial seller identity;
+- future WhatsApp numbers remain separate channel accounts, not fields that limit the seller to one number.
+
+#### Customer ownership
+
+Source of truth: `PMG-CUSTOMER-OWNERSHIP.md`.
+
+- one canonical customer record, never one duplicate per seller;
+- official PMG customer code/ID is preferred identity;
+- normalized CPF/CNPJ is secondary deduplication identity;
+- ownership protected for 30 days from latest known purchase;
+- after expiry another seller may claim;
+- manual claim and official Excel import;
+- ownership history/audit;
+- import cannot silently steal protected customers;
+- official imported last-purchase date feeds replenishment/dormancy;
+- boundary/concurrency regression tests required.
+
+#### Search selectors
+
+Large dropdowns must progressively become server-backed search/autocomplete.
+
+Customer search: PMG ID, CPF/CNPJ, legal name, trade name, representative/full name.
+Seller search: seller code/ID, full name, CPF when available, authorized access e-mail.
+
+#### Security gate
+
+- claim/transfer via controlled server function;
+- manager-created priority via controlled server function;
+- seller creation/update via controlled admin function or tightly reviewed RLS/grants;
+- fresh RLS/grants review before these writes are considered production-ready.
 
 This consolidation does not replace the 0.9.1 commercial-core work below.
 
