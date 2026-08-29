@@ -8,6 +8,7 @@
     "management_seller_diagnostic": "diagnostico-vendedor.html",
     "management_report": "relatorio-gerencial.html",
     "seller_admin": "vendedores.html",
+    "customer_admin": "clientes.html",
     "seller_home": "portal-vendedor.html",
     "seller_ai": "ia-vendedor.html",
     "seller_crm": "crm-vendedor.html",
