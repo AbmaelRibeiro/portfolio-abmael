@@ -42,7 +42,6 @@
     "ofertas-vendedor.html": "vendedor-ofertas-v2.html",
     "comissao.html": "vendedor-comissao-v2.html",
     "whatsapp-vendedor.html": "vendedor-whatsapp-v2.html",
-    "followup.html": "vendedor-followup.html",
-    "ativar-vendedor.html": "vendedor-ativar-v2.html"
+    "followup.html": "vendedor-followup.html"
   }
 }
