@@ -1,12 +1,43 @@
 # PMG Comercial IA — Release Management
 
-Current product release: **0.9.0-beta**
-Environment: **homologation**
+Current product release: **0.9.0-rc1**
+Environment: **homologation / delivery candidate**
 Canonical entry: `app.html`
+Release branch: `pmg-release-0.9.0-rc1`
+
+## Delivery scope for RC1
+
+This release candidate is the stable delivery snapshot for the current commercial core. The goal is to demonstrate and homologate the complete order flow without reopening architecture.
+
+### Included and considered stable for demonstration
+
+- catalog and price tables;
+- PMG product code as stable commercial identifier;
+- offers;
+- seller portal and role routing;
+- order draft/manual/AI-assisted creation;
+- customer validation and revision;
+- approval → PMG launch → finalization;
+- commission confirmation;
+- CRM stage synchronization;
+- seller priorities and rule-based PMGuinho;
+- management dashboard, seller performance, pipeline and reports;
+- seller-private WhatsApp scope;
+- canonical routes and single product entry;
+- customer/carrier administration screens in homologation mode.
+
+### Limited in RC1 — do not demonstrate as finished automation
+
+- seller access invitation backend still needs the `access_grants` / `expires_at` corrections;
+- manager-created priority write still needs the controlled RPC/RLS validation;
+- complete seller commercial create/update persistence is not enabled yet;
+- 30-day customer ownership, manual claim and Excel persistence are specified and previewed but not yet active server-side;
+- generative AI provider is not the source of commercial truth and may still be unconfigured;
+- Meta/WhatsApp real provider, QR multi-number connector, journeys and bulk campaigns remain backlog/homologation.
 
 ## Versioning rule
 
-From this release onward, product evolution uses semantic product versions (`0.9.0`, `0.10.0`, `1.0.0`) and Git commits. Do not create new user-facing files named `-v2`, `-v3`, `-v5`, etc.
+Product evolution uses semantic product versions (`0.9.0`, `0.10.0`, `1.0.0`) and Git commits. Do not create new user-facing files named `-v2`, `-v3`, `-v5`, etc.
 
 Legacy versioned HTML files remain temporarily for compatibility only. Canonical routes are listed in `pmg-routes.json`.
 
@@ -44,6 +75,7 @@ These areas are consolidation targets, not rewrite targets.
 - legacy routes still being absorbed by canonical routes;
 - customer validation public page still depending on temporary hosting infrastructure;
 - manager-created priority needs a fresh RLS/write-permission validation before it is treated as production-ready;
+- customer ownership/claim/import still needs the server-side 30-day rule;
 - daily/weekly management report is implemented but still in homologation.
 
 ### 🔴 Do not take to production yet
