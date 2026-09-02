@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#087a4b">
+<title>PMG • Conferir pedido</title>
+<style>
+:root{--g:#087a4b;--gd:#075b3c;--r:#ff292d;--bg:#f5f8f6;--ink:#172019;--m:#718078;--line:#dfe8e2;--soft:#eaf7ef;--warn:#fff3df}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eef7f1,#f8faf9);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:760px;margin:auto;padding:18px 14px 42px}.brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}.mark{width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,var(--r) 0 43%,#fff 43% 57%,var(--g) 57%);border:1px solid #111;display:grid;place-items:center;font-weight:900}.brand b{font-size:20px}.brand small{display:block;color:var(--m)}.hero,.card{border-radius:22px;padding:18px}.hero{background:linear-gradient(135deg,var(--g),var(--gd));color:white}.hero h1{font-size:27px;line-height:1.08;margin:6px 0 8px}.hero p{margin:0;color:#d8f0e1;line-height:1.45}.ey{font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#9fe0b8}.card{margin-top:12px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 34px rgba(15,75,48,.05)}.row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.status{display:inline-flex;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:900;background:#eef3f0}.status.approved{background:var(--soft);color:var(--g)}.status.revision_requested{background:#fff2e5;color:#995512}.status.expired,.status.cancelled{background:#fff0f1;color:#a51c28}.meta{font-size:12px;color:var(--m);line-height:1.45}.items{display:grid;gap:9px;margin-top:14px}.item{border:1px solid var(--line);border-radius:15px;padding:13px}.code{font-size:10px;font-weight:900;color:var(--g);background:var(--soft);padding:5px 8px;border-radius:999px;display:inline-flex}.item h3{font-size:15px;line-height:1.35;margin:8px 0 5px}.price{font-weight:900;white-space:nowrap}.total{display:flex;justify-content:space-between;align-items:end;border-top:1px solid var(--line);margin-top:16px;padding-top:16px}.total strong{font-size:28px}.notice{background:#f3f8f5;border-radius:14px;padding:12px;font-size:12px;line-height:1.5;color:#42564a;margin-top:13px}.actions{display:grid;grid-template-columns:1.2fr .8fr;gap:9px;margin-top:14px}.btn{border:0;border-radius:14px;padding:14px;font-weight:900;font-size:15px}.approve{background:linear-gradient(90deg,#09934f,var(--g));color:#fff}.revise{background:#fff2e5;color:#8f5112}.revision{display:none;margin-top:12px}.revision textarea{width:100%;min-height:105px;border:1px solid var(--line);border-radius:13px;padding:12px;font:inherit}.msg{margin-top:12px;padding:12px;border-radius:13px;background:#edf3ef;color:var(--m);font-size:12px;line-height:1.45}.ok{background:var(--soft);color:var(--g)}.err{background:#fff0f1;color:#a51c28}.hidden{display:none!important}@media(max-width:600px){.actions{grid-template-columns:1fr}.hero h1{font-size:24px}.row{gap:8px}.price{font-size:13px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="brand"><div class="mark">PMG</div><div><b>PMG Atacadista</b><small>Conferência segura do pedido</small></div></div>
+  <section class="hero"><div class="ey">Confira antes de aprovar</div><h1>Seu pedido precisa da sua confirmação.</h1><p>Revise produtos, quantidades e valores. Se houver divergência, peça a correção.</p></section>
+  <section id="loading" class="card">Carregando pedido...</section>
+  <section id="content" class="card hidden">
+    <div class="row"><div><span id="status" class="status">Pendente</span><h2 id="title"></h2><div id="customer" class="meta"></div></div><div style="text-align:right"><small class="meta">Seu vendedor</small><b id="seller" style="display:block"></b></div></div>
+    <div id="items" class="items"></div>
+    <div class="total"><div><small class="meta">Total do pedido</small><strong id="total"></strong></div><div id="discount" class="meta"></div></div>
+    <div class="notice"><b>Por que confirmar?</b><br>Ao aprovar, você confirma que produtos, quantidades e valores estão corretos. Só então o vendedor poderá seguir com o pedido.</div>
+    <div id="actions" class="actions"><button id="approve" class="btn approve">Está tudo certo — Aprovar</button><button id="revise" class="btn revise">Preciso de correção</button></div>
+    <div id="revision" class="revision"><textarea id="message" placeholder="Ex.: trocar a quantidade para 5 caixas."></textarea><button id="send" class="btn revise" style="width:100%;margin-top:8px">Enviar pedido de correção</button></div>
+    <div id="msg" class="msg hidden"></div>
+  </section>
+</main>
+<script>
+const API='https://mvlnnerolwabvdgbpntz.supabase.co/functions/v1/pmg-order-public';
+const token=new URLSearchParams(location.search).get('token')||'';
+const $=id=>document.getElementById(id);
+const money=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(Number(n||0));
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const labels={pending:'Aguardando validação',viewed:'Visualizado',approved:'Aprovado',revision_requested:'Correção solicitada',expired:'Link expirado',cancelled:'Link substituído'};
+let data;
+function show(text,type=''){const m=$('msg');m.textContent=text;m.className='msg '+type}
+async function load(){
+  if(!token){$('loading').textContent='Link inválido.';return}
+  try{
+    const r=await fetch(API+'?token='+encodeURIComponent(token),{cache:'no-store'});
+    const j=await r.json();
+    if(!r.ok)throw new Error(j.error||'Link inválido');
+    data=j;$('loading').classList.add('hidden');$('content').classList.remove('hidden');render();
+  }catch(e){$('loading').textContent='Não foi possível abrir este pedido. O link pode ter expirado ou sido substituído.'}
+}
+function render(){
+  $('status').textContent=labels[data.validation.status]||data.validation.status;$('status').className='status '+data.validation.status;
+  $('title').textContent='Pedido #'+data.order.order_number;$('customer').textContent=data.customer.name+(data.customer.city?' • '+data.customer.city:'');$('seller').textContent=data.seller.name;
+  $('items').innerHTML=data.items.map(it=>'<div class="item"><div class="row"><div><span class="code">Cód. '+esc(it.product_code_snapshot)+'</span><h3>'+esc(it.product_name_snapshot)+'</h3><div class="meta">Quantidade: <b>'+Number(it.quantity).toLocaleString('pt-BR')+' '+esc(it.sale_unit_snapshot||'')+'</b><br>Preço unitário: '+money(it.final_unit_price)+(Number(it.seller_discount_pct)>0?' • Desconto: '+Number(it.seller_discount_pct).toFixed(2)+'%':'')+'</div></div><div class="price">'+money(it.line_total)+'</div></div></div>').join('');
+  $('total').textContent=money(data.order.net_amount);$('discount').textContent=Number(data.order.discount_amount)>0?'Desconto total: '+money(data.order.discount_amount):'';
+  if(!['pending','viewed'].includes(data.validation.status)||!data.validation.active){$('actions').classList.add('hidden');$('revision').style.display='none';if(data.validation.status==='approved')show('Pedido aprovado. Seu vendedor já pode seguir com o lançamento.','ok');else if(data.validation.status==='revision_requested')show('Sua solicitação de correção foi enviada ao vendedor.','ok');else show('Este link não aceita mais alterações.')}
+}
+$('revise').onclick=()=>{$('revision').style.display='block'};
+$('approve').onclick=async()=>{if(!confirm('Confirma que produtos, quantidades e valores estão corretos?'))return;$('approve').disabled=true;try{const r=await fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({token,action:'approve'})});const j=await r.json();if(r.ok){show('Pedido aprovado com sucesso. Obrigado!','ok');$('actions').classList.add('hidden');$('revision').style.display='none'}else show('Não foi possível aprovar: '+(j.error||'erro'),'err')}finally{$('approve').disabled=false}};
+$('send').onclick=async()=>{const message=$('message').value.trim();if(message.length<3)return show('Descreva o que precisa ser corrigido.','err');const r=await fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({token,action:'revision',message})});const j=await r.json();if(r.ok){show('Correção enviada ao vendedor. Ele ajustará e enviará uma nova versão.','ok');$('actions').classList.add('hidden');$('revision').style.display='none'}else show('Não foi possível enviar a correção: '+(j.error||'erro'),'err')};
+load();
+</script>
+</body>
+</html>
