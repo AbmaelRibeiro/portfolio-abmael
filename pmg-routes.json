@@ -1,7 +1,7 @@
 {
   "product": "PMG Comercial IA",
-  "release": "0.9.0-beta",
-  "environment": "homologation",
+  "release": "0.9.0-rc1",
+  "environment": "homologation-delivery",
   "canonical": {
     "entry": "app.html",
     "management": "gestao.html",
