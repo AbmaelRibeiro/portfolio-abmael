@@ -5,6 +5,7 @@
   "canonical": {
     "entry": "app.html",
     "management": "gestao.html",
+    "management_orders": "pedidos.html",
     "management_seller_diagnostic": "diagnostico-vendedor.html",
     "management_report": "relatorio-gerencial.html",
     "seller_admin": "vendedores.html",
@@ -30,6 +31,7 @@
   },
   "legacy_implementation": {
     "gestao.html": "gestao-v5.html",
+    "pedidos.html": "pedidos-v3.html",
     "portal-vendedor.html": "vendedor-v2.html",
     "ia-vendedor.html": "vendedor-ia-v2.html",
     "crm-vendedor.html": "vendedor-crm-v2.html",
